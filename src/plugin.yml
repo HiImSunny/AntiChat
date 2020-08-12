@@ -1,0 +1,7 @@
+name: RBAntiChat
+author: HiImSunny
+version: 1.0
+main: me.sunny.rbantichat.Main
+
+commands:
+ RBAntiChat:
