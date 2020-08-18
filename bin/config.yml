@@ -1,7 +1,108 @@
 #================================#
 #\          RBAntiChat          /#
 # | Code By SunnyDepTraiVaiLon | #
-#/         Version: 1.1         \#
+#/         Version: 1.2         \#
 #================================#
 
 ChatCoolDown: 3
+
+Chat:
+  is-enabled: true
+
+Swear:
+  normal:
+   - 'địt'
+   - 'đụ'
+   - 'má'
+   - 'mày'
+   - 'lồn'
+   - 'cặc'
+   - 'đỉ'
+   - 'đĩ'
+   - 'cl'
+   - 'clm'
+   - 'clmm'
+   - 'du me'
+   - 'di me'
+   - 'du ma'
+   - 'con cac'
+   - 'cai lồn'
+   - 'du di me may'
+   - 'cc'
+   - 'dcm'
+   - 'đcm'
+   - 'dcmm'
+   - 'đcmm'
+   - 'cái lồ'
+   - 'con lon'
+   - 'con lồn'
+   - 'dit con me'
+   - 'dit cu may'
+   - 'chich'
+   - 'chịch'
+   - 'cc'
+   - 'cl'
+   - 'clm'
+   - 'clmm'
+   - 'idiot'
+   - 'fuck'
+   - 'bitch'
+   - 'cặc'
+   - 'lồn'
+   - 'loz'
+   - 'lôz'
+   - 'lozz'
+   - 'đỉ'
+   - 'phò'
+   - 'móa'
+   - 'địt'
+   - 'đụ'
+   - 'chịch'
+   - 'nứng'
+   - 'phịch'
+   - 'phang'
+  server:
+    - 'sv nhu'
+    - 'server như'
+    - 'sv như'
+    - 'server nhu'
+    - 'sv lam an nhu'
+    - 'sv làm ăn như'
+    - 'server lam an nhu'
+    - 'server làm ăn như'
+    
+Domain:
+  whitelist:
+   - 'minerb.net'
+   - 'minerb.ddns.net'
+   - '127.0.0.1'
+   - '0.0.0.0'
+   
+Caps:
+  max-caps: 3
+  
+Commands:
+  - '?'
+  - 'bukkit:plugins'
+  - 'bukkit:?'
+  - 'bukkit:help'
+  - 'bukkit:ver'
+  - 'bukkit:version'
+  - 'bukkit:about'
+  - 'bukkit:pl'
+  - 'bukkit:msg'
+  - 'bukkit:kill'
+  - 'bukkit:tell'
+  - 'bukkit:me'
+  - 'minecraft:me'
+  - 'pl'
+  - 'plugins'
+  - 'me'
+  - 'about'
+  - 'version'
+  - 'ver'
+  - 'icanhasbukkit'
+  - 'help'
+  - '/calc for(i=0;i<256;i++){for(j=0;j<256;j++){for(k=0;k<256;k++){for(l=0;l<256;l++){ln(pi)}}}}'
+  - '/calc'
+  - 'calc for(i=0;i<256;i++){for(j=0;j<256;j++){for(k=0;k<256;k++){for(l=0;l<256;l++){ln(pi)}}}}' 

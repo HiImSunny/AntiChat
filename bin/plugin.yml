@@ -1,6 +1,6 @@
 name: RBAntiChat
 author: HiImSunny
-version: 1.1
+version: 1.2
 main: me.sunny.rbantichat.Main
 
 commands:
