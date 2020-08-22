@@ -1,12 +1,20 @@
 package me.sunny.rbantichat;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.events.PacketListener;
+import com.comphenix.protocol.reflect.FieldAccessException;
 
 import me.sunny.rbantichat.Events.Ad;
 import me.sunny.rbantichat.Events.Caps;
@@ -16,6 +24,8 @@ import me.sunny.rbantichat.Events.Swear;
 import me.sunny.rbantichat.Events.Toggle;
 
 public class Main extends JavaPlugin {
+	
+	ProtocolManager prm;
 
 	public static long currentTime = 0L;
 	public static double lastStoppedTime = 0.0D;
@@ -40,7 +50,25 @@ public class Main extends JavaPlugin {
 		start();
 		saveDefaultConfig();
 		this.getCommand("RBAntiChat").setExecutor(new Commands());
-		ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener)new TabBlocked(Main.getPlugin(), new PacketType[] { PacketType.Play.Client.TAB_COMPLETE }));
+		this.prm = ProtocolLibrary.getProtocolManager();
+		this.prm.addPacketListener((PacketListener)new PacketAdapter(Main.getPlugin(), ListenerPriority.NORMAL, new PacketType[] { PacketType.Play.Client.TAB_COMPLETE }) {
+	    	    public void onPacketReceiving(PacketEvent event) {
+	    	        if (event.getPacketType() == PacketType.Play.Client.TAB_COMPLETE) {
+	    	          try {
+	    	            PacketContainer packet = event.getPacket();
+	    	            String message = ((String)packet.getSpecificModifier(String.class).read(0)).toLowerCase();
+	    	            
+	    	            if (message.startsWith("/") && !message.contains(" ")) {
+	    	              event.setCancelled(true);
+	    	            }
+	    	          }
+	    	          catch (FieldAccessException e) {
+	    	            
+	    	            Main.getPlugin().getLogger().log(Level.SEVERE, "Couldn't access field.", (Throwable)e);
+	    	          } 
+	    	        }
+	    	      }
+	      });
 		registerEvents();
 		stop();
 		Bukkit.getConsoleSender().sendMessage(

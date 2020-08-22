@@ -17,7 +17,7 @@ public class Commands implements TabExecutor {
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
 		if (args.length == 0) {
 			cs.sendMessage("");
-			cs.sendMessage(("&cRBAntiChat &fversion &e1.3").replace("&", "§"));
+			cs.sendMessage(("&cRBAntiChat &fversion &e" + Main.getPlugin().getDescription().getVersion()).replace("&", "§"));
 			cs.sendMessage(("&7&oFrom Sunny With Love").replace("&", "§"));
 			cs.sendMessage("");
 			return true;

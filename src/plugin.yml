@@ -1,7 +1,8 @@
 name: RBAntiChat
 author: HiImSunny
-version: 1.3
+version: 1.4
 main: me.sunny.rbantichat.Main
+depend: [ProtocolLib]
 
 commands:
  RBAntiChat:

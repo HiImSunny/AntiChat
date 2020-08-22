@@ -22,7 +22,7 @@ public class Command implements Listener {
 		String m = e.getMessage();
 		if (p.hasPermission("rbantichat.admin"))
 			return;
-		if (Main.getPlugin().getConfig().getStringList("defaultBlockedCommands").stream()
+		if (Main.getPlugin().getConfig().getStringList("Commands").stream()
 				.anyMatch(s -> m.startsWith("/" + s.toLowerCase()))) {
 			e.setCancelled(true);
 			EventsManager.onParticles2(p);
