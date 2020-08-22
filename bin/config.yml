@@ -1,7 +1,7 @@
 #================================#
 #\          RBAntiChat          /#
 # | Code By SunnyDepTraiVaiLon | #
-#/         Version: 1.4         \#
+#/         Version: 1.5         \#
 #================================#
 
 ChatCoolDown: 3
@@ -28,6 +28,9 @@ Swear:
    - 'con cac'
    - 'cai lồn'
    - 'du di me may'
+   - 'dit con me may'
+   - 'dit con di me may'
+   - 'dit'
    - 'cc'
    - 'dcm'
    - 'đcm'

@@ -8,11 +8,11 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import me.sunny.rbantichat.Main;
 
 public class Toggle implements Listener {
-	
+
 	@EventHandler
 	public void toggleChat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
-		if (p.hasPermission("rbantichat.admin") && p.isOp()) 
+		if (p.hasPermission("rbantichat.admin") || p.isOp())
 			return;
 		if (!Main.getPlugin().getConfig().getBoolean("Chat.is-enabled")) {
 			e.setCancelled(true);

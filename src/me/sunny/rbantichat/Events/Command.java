@@ -20,7 +20,7 @@ public class Command implements Listener {
 	public void blacklistCommand(PlayerCommandPreprocessEvent e) {
 		Player p = e.getPlayer();
 		String m = e.getMessage();
-		if (p.hasPermission("rbantichat.admin"))
+		if (p.hasPermission("rbantichat.admin") || p.isOp())
 			return;
 		if (Main.getPlugin().getConfig().getStringList("Commands").stream()
 				.anyMatch(s -> m.startsWith("/" + s.toLowerCase()))) {

@@ -9,18 +9,18 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import me.sunny.rbantichat.EventsManager;
 import me.sunny.rbantichat.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class Ad implements Listener {
+	
 
 	@EventHandler
 	public void adChat(AsyncPlayerChatEvent e) throws InterruptedException {
 		Player p = e.getPlayer();
-		if (p.hasPermission("rbantichat.admin") && p.isOp())
+		if (p.hasPermission("rbantichat.admin") || p.isOp())
 			return;
 		if (!EventsManager.getChat(e.getPlayer(), e.getMessage())) {
 			e.setMessage("§cTôi vừa quảng cáo, §d" + EventsManager.randomAnum(7));
@@ -45,28 +45,33 @@ public class Ad implements Listener {
 			return;
 		}
 	}
-	
+
 	@EventHandler
 	public void adSign(SignChangeEvent e) {
 		Player p = e.getPlayer();
 		if (p.hasPermission("rbantichat.admin") && p.isOp())
 			return;
-	      byte b; int i; String[] arrayOfString; for (i = (arrayOfString = e.getLines()).length, b = 0; b < i; ) { String word = arrayOfString[b];
-	        if (!EventsManager.getChat(p, word.toLowerCase())) {
-	          if (e.getLine(0).equalsIgnoreCase(word.toLowerCase())) {
-	            e.setLine(0, "§4§l" + EventsManager.randomAnum(15));
-	          } 
-	          if (e.getLine(1).equalsIgnoreCase(word.toLowerCase())) {
-	            e.setLine(1, "§4§l" + EventsManager.randomAnum(15));
-	          } 
-	          if (e.getLine(2).equalsIgnoreCase(word.toLowerCase())) {
-	            e.setLine(2, "§4§l" + EventsManager.randomAnum(15));
-	          } 
-	          if (e.getLine(3).equalsIgnoreCase(word.toLowerCase())) {
-	            e.setLine(3, "§4§l" + EventsManager.randomAnum(15));
-	          } 
-	        } 
-	        b++; }
+		byte b;
+		int i;
+		String[] arrayOfString;
+		for (i = (arrayOfString = e.getLines()).length, b = 0; b < i;) {
+			String word = arrayOfString[b];
+			if (!EventsManager.getChat(p, word.toLowerCase())) {
+				if (e.getLine(0).equalsIgnoreCase(word.toLowerCase())) {
+					e.setLine(0, "§4§l" + EventsManager.randomAnum(15));
+				}
+				if (e.getLine(1).equalsIgnoreCase(word.toLowerCase())) {
+					e.setLine(1, "§4§l" + EventsManager.randomAnum(15));
+				}
+				if (e.getLine(2).equalsIgnoreCase(word.toLowerCase())) {
+					e.setLine(2, "§4§l" + EventsManager.randomAnum(15));
+				}
+				if (e.getLine(3).equalsIgnoreCase(word.toLowerCase())) {
+					e.setLine(3, "§4§l" + EventsManager.randomAnum(15));
+				}
+			}
+			b++;
+		}
 	}
 
 }

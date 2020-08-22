@@ -22,14 +22,19 @@ public class Swear implements Listener {
 	public BossBar bar;
 
 	@EventHandler
-	public void swearChat(AsyncPlayerChatEvent e) throws InterruptedException {
+	public void swearChat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
-		if (p.hasPermission("rbantichat.admin") && p.isOp())
+		String m = e.getMessage();
+		if (p.hasPermission("rbantichat.admin") || p.isOp())
 			return;
-		List<String> getChat = Main.getPlugin().getConfig().getStringList("Swear.normal");
-		List<String> getChat2 = Main.getPlugin().getConfig().getStringList("Swear.server");
-		for (String gc : getChat) {
-			if (e.getMessage().toLowerCase().contains(gc)) {
+		byte b;
+		int i;
+		String[] arrayOfString;
+		for (i = (arrayOfString = m.split(" ")).length, b = 0; b < i;) {
+			String word = arrayOfString[b];
+			List<String> getChat = Main.getPlugin().getConfig().getStringList("Swear.normal");
+			List<String> getChat2 = Main.getPlugin().getConfig().getStringList("Swear.server");
+			if (getChat.contains(word.toLowerCase())) {
 				e.setCancelled(true);
 				EventsManager.onParticles1(p);
 				p.sendMessage(("&8[&cRBAntiChat&8] &aĐừng chửi thề bạn ơi!").replace("&", "§"));
@@ -44,21 +49,21 @@ public class Swear implements Listener {
 				}.runTaskLater(Main.getPlugin(), 1L);
 				String name = e.getPlayer().getDisplayName();
 				String chat = e.getMessage();
-				for (Player b : Bukkit.getOnlinePlayers()) {
-					if (b.hasPermission("rbantichat.admin")) {
-						b.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa chửi tục &f[&e&o" + chat + "&f]")
+				for (Player c : Bukkit.getOnlinePlayers()) {
+					if (c.hasPermission("rbantichat.admin")) {
+						c.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa chửi tục &f[&e&o" + chat + "&f]")
 								.replace("&", "§"));
 					}
 				}
 				return;
 			}
-		}
-		for (String gc : getChat2) {
-			if (e.getMessage().toLowerCase().contains(gc)) {
+			if (getChat2.contains(word.toLowerCase())) {
 				e.setCancelled(true);
-				p.sendMessage(("&8[&cRBAntiChat&8] &aNếu bạn có ý định chửi server thì out giúp mình!").replace("&", "§"));
+				p.sendMessage(
+						("&8[&cRBAntiChat&8] &aNếu bạn có ý định chửi server thì out giúp mình!").replace("&", "§"));
 				return;
 			}
+			b++;
 		}
 	}
 
