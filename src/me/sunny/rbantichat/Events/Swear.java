@@ -35,7 +35,7 @@ public class Swear implements Listener {
 			List<String> getChat = Main.getPlugin().getConfig().getStringList("Swear.normal");
 			List<String> getChat2 = Main.getPlugin().getConfig().getStringList("Swear.server");
 			if (getChat.contains(word.toLowerCase())) {
-				e.setCancelled(true);
+				e.setMessage("§cTôi là bê đê");
 				EventsManager.onParticles1(p);
 				p.sendMessage(("&8[&cRBAntiChat&8] &aĐừng chửi thề bạn ơi!").replace("&", "§"));
 				p.sendTitle("§c§o(( Đừng có chửi thề bạn ơi ))", "", 10, 10, 10);

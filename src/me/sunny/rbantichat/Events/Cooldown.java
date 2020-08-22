@@ -34,7 +34,8 @@ public class Cooldown implements Listener {
 				int warns = WarnsManager.addWarn(p), maxwarns = 3;
 				int mute = WarnsManager.getMute(uuid), maxmute = 3;
 				p.sendMessage(("&8[&cRBAntiChat&8] &aBạn cần đợi &e&o" + f + "s &ađể chat tiếp").replace("&", "§"));
-				p.sendTitle("§c§lĐừng Spam Bạn Ơi!", "§8[ §a" + warns + "/3 §8] §f/ §8[ §e" + mute + "/3 §8]", 10, 20, 10);
+				p.sendTitle("§c§lĐừng Spam Bạn Ơi!", "§8[ §a" + warns + "/3 §8] §f/ §8[ §e" + mute + "/3 §8]", 10, 20,
+						10);
 				e.setCancelled(true);
 				if (warns >= maxwarns && maxwarns > 0) {
 					Bukkit.getScheduler().runTask(Main.getPlugin(), () -> {
@@ -48,8 +49,8 @@ public class Cooldown implements Listener {
 				if (mute >= maxmute && maxmute > 0) {
 					Bukkit.getScheduler().runTask(Main.getPlugin(), () -> {
 						String j = p.getName();
-					Bukkit.getServer().dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
-							"tempmute " + j + " 30m Kick 3 lần vẫn cố spam");
+						Bukkit.getServer().dispatchCommand((CommandSender) Bukkit.getConsoleSender(),
+								"tempmute " + j + " 30m Kick 3 lần vẫn cố spam");
 					});
 					WarnsManager.clearMute(uuid);
 				}

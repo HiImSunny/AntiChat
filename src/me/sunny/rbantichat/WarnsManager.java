@@ -21,7 +21,7 @@ public class WarnsManager {
 	public static void clearWarns(Player p) {
 		WarnsManager.warns.clear();
 	}
-	
+
 	public static int addMute(UUID p) {
 		int mute = ((Integer) WarnsManager.mute.getOrDefault(p, Integer.valueOf(0))).intValue() + 1;
 
@@ -33,7 +33,9 @@ public class WarnsManager {
 	public static void clearMute(UUID p) {
 		WarnsManager.mute.clear();
 	}
-	
-	public static int getMute(UUID p) { return ((Integer)WarnsManager.mute.getOrDefault(p, Integer.valueOf(0))).intValue(); }
+
+	public static int getMute(UUID p) {
+		return ((Integer) WarnsManager.mute.getOrDefault(p, Integer.valueOf(0))).intValue();
+	}
 
 }
