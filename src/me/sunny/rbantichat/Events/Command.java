@@ -1,5 +1,7 @@
 package me.sunny.rbantichat.Events;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,30 +22,32 @@ public class Command implements Listener {
 	public void blacklistCommand(PlayerCommandPreprocessEvent e) {
 		Player p = e.getPlayer();
 		String m = e.getMessage();
+		List<String> mm = Main.getPlugin().getConfig().getStringList("Commands");
 		if (p.hasPermission("rbantichat.admin") || p.isOp())
 			return;
-		if (Main.getPlugin().getConfig().getStringList("Commands").stream()
-				.anyMatch(s -> m.startsWith("/" + s.toLowerCase()))) {
-			e.setCancelled(true);
-			EventsManager.onParticles2(p);
-			p.sendMessage(("&8[&cRBAntiChat&8] &aBạn không được dùng lệnh này!").replace("&", "§"));
-			p.sendTitle("§c§o(( Đây là lệnh cấm ))", "", 10, 10, 10);
-			p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§c§o(( Đây là lệnh cấm ))"));
-			new BukkitRunnable() {
-				public void run() {
-					p.addPotionEffect((new PotionEffect(PotionEffectType.BLINDNESS, 60, 10)));
-					p.addPotionEffect((new PotionEffect(PotionEffectType.SLOW, 50, 10)));
+		for (String mmm : mm) {
+			if (m.toLowerCase().equals("/" + mmm) || m.toLowerCase().startsWith("/" + mmm + " ")) {
+				e.setCancelled(true);
+				EventsManager.onParticles2(p);
+				p.sendMessage(("&8[&cRBAntiChat&8] &aBạn không được dùng lệnh này!").replace("&", "§"));
+				p.sendTitle("§c§o(( Đây là lệnh cấm ))", "", 10, 10, 10);
+				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§c§o(( Đây là lệnh cấm ))"));
+				new BukkitRunnable() {
+					public void run() {
+						p.addPotionEffect((new PotionEffect(PotionEffectType.BLINDNESS, 60, 10)));
+						p.addPotionEffect((new PotionEffect(PotionEffectType.SLOW, 50, 10)));
+					}
+				}.runTaskLater(Main.getPlugin(), 1L);
+				String name = e.getPlayer().getDisplayName();
+				String chat = e.getMessage();
+				for (Player c : Bukkit.getOnlinePlayers()) {
+					if (c.hasPermission("rbantichat.admin")) {
+						c.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa dùng lệnh cấm &f[&e&o" + chat + "&f]")
+								.replace("&", "§"));
+					}
 				}
-			}.runTaskLater(Main.getPlugin(), 1L);
-			String name = e.getPlayer().getDisplayName();
-			String chat = e.getMessage();
-			for (Player b : Bukkit.getOnlinePlayers()) {
-				if (b.hasPermission("rbantichat.admin")) {
-					b.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa dùng lệnh cấm &f[&e&o" + chat + "&f]")
-							.replace("&", "§"));
-				}
+				return;
 			}
-			return;
 		}
 	}
 
