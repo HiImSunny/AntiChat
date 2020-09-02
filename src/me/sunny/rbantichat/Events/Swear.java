@@ -35,6 +35,14 @@ public class Swear implements Listener {
 			List<String> getChat = Main.getPlugin().getConfig().getStringList("Swear.normal");
 			List<String> getChat2 = Main.getPlugin().getConfig().getStringList("Swear.server");
 			if (getChat.contains(word.toLowerCase())) {
+				String name = e.getPlayer().getDisplayName();
+				String chat = e.getMessage();
+				for (Player c : Bukkit.getOnlinePlayers()) {
+					if (c.hasPermission("rbantichat.admin")) {
+						c.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa chửi tục &f[&e&o" + chat + "&f]")
+								.replace("&", "§"));
+					}
+				}
 				e.setMessage("§cTôi là bê đê");
 				EventsManager.onParticles1(p);
 				p.sendMessage(("&8[&cRBAntiChat&8] &aĐừng chửi thề bạn ơi!").replace("&", "§"));
@@ -47,14 +55,6 @@ public class Swear implements Listener {
 						p.addPotionEffect((new PotionEffect(PotionEffectType.SLOW, 50, 10)));
 					}
 				}.runTaskLater(Main.getPlugin(), 1L);
-				String name = e.getPlayer().getDisplayName();
-				String chat = e.getMessage();
-				for (Player c : Bukkit.getOnlinePlayers()) {
-					if (c.hasPermission("rbantichat.admin")) {
-						c.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa chửi tục &f[&e&o" + chat + "&f]")
-								.replace("&", "§"));
-					}
-				}
 				return;
 			}
 			if (getChat2.contains(word.toLowerCase())) {

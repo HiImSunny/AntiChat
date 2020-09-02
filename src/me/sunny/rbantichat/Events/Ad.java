@@ -32,6 +32,14 @@ public class Ad implements Listener {
 		if (p.hasPermission("rbantichat.admin") || p.isOp())
 			return;
 		if (!EventsManager.getChat(e.getPlayer(), e.getMessage())) {
+			String name = e.getPlayer().getDisplayName();
+			String chat = e.getMessage();
+			for (Player b : Bukkit.getOnlinePlayers()) {
+				if (b.hasPermission("rbantichat.admin")) {
+					b.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa quảng cáo &f[&e&o" + chat + "&f]")
+							.replace("&", "§"));
+				}
+			}
 			e.setMessage("§cTôi vừa quảng cáo");
 			EventsManager.onParticles1(p);
 			p.sendMessage(("&8[&cRBAntiChat&8] &aĐừng có quảng cáo bạn ơi!").replace("&", "§"));
@@ -43,14 +51,6 @@ public class Ad implements Listener {
 					p.addPotionEffect((new PotionEffect(PotionEffectType.SLOW, 50, 10)));
 				}
 			}.runTaskLater(Main.getPlugin(), 1L);
-			String name = e.getPlayer().getDisplayName();
-			String chat = e.getMessage();
-			for (Player b : Bukkit.getOnlinePlayers()) {
-				if (b.hasPermission("rbantichat.admin")) {
-					b.sendMessage(("&8[&cRBAntiChat&8] &e" + name + " &avừa quảng cáo &f[&e&o" + chat + "&f]")
-							.replace("&", "§"));
-				}
-			}
 			return;
 		}
 	}
