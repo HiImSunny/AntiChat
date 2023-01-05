@@ -1,0 +1,6 @@
+name: Antichat
+version: '${project.version}'
+main: vn.sunext.antichat.listeners.AntiChat
+api-version: 1.19
+authors: [ sunext_team, adselvn ]
+website: https://github.com/Sunext-vn

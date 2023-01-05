@@ -1,0 +1,10 @@
+name: ChatManager
+authors: [sunext_team, adselvn]
+version: ${project.version}
+main: vn.sunext.chatmanager.ChatManager
+depend: [ProtocolLib]
+
+commands:
+ chatmanager:
+  aliases:
+   - antichat
